@@ -7,6 +7,7 @@ function fetchManager({ url, method, body, headers, callback }) {
         method,
         body,
         headers,
+ 	credentials: "same-origin"
     }).then((response) => {
         return response.json()
     }).then((result) => {
