@@ -22,10 +22,14 @@ app.delete('/api/questions/:questionid/answers/:answerid', function(req,res) {
 app.post('/api/questions/:questionid/answers', jsonParser,  function(req, res){
     const questionId = req.params.questionid;
     const body = req.body;
+    console.log("body is ", body);
 
-    if(!req.body) res.json({"error" : 400});
+    if(!req.body.content) { 
+        res.statusCode = 400;
+        return res.json({"error" : "no content"});
+    }
 
-	res.json({
+	return res.json({
         "answerId" : shortid.generate(),
         "questionId" : questionId,
         "content" : body.content,
